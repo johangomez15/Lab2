@@ -1,0 +1,91 @@
+---
+title: "Project 1"
+author: "Johan Gomez"
+date: "2024-09-24"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+```{r libraries, include=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(kableExtra)
+library(RColorBrewer)
+```
+
+```{r, echo=FALSE}
+SuperBowlAds = read.csv("Project1_SuperBowlAds.csv")
+outlier <- 170015.5 + 1.5*(170015.5 - 6431.0)
+SuperBowlAds = SuperBowlAds[SuperBowlAds$view_count <= outlier, ]
+```
+
+# **Introduction**
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> The dataset used for this project was collected from the website FiveThirtyEight. The website looked at 233 ads from the Super Bowl then proceeded to analyze the ads to test if the ads fit the criteria that they created. For instance, one of the criteria was "Was it (the ad) trying to be funny", and so on. My outcome variable for my analysis is View count and my 3 predictor variables include like count, dislike count, and animals
+
+### Note
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;">I removed the outliers in View count since the outliers were altering the data which made the graphs difficult to look at. I used the outlier equation to identify the outliers, which came out to be 415392.25. Any valuers that were above that number were removed to make the data easier to understand ![](SuperBowlADs.png) [Picture Source](https://projects.fivethirtyeight.com/super-bowl-ads/)
+
+# **Outcome Variable**
+
+```{r, echo=FALSE}
+SuperBowlAds_ggplot <- ggplot(SuperBowlAds)
+SuperBowlAds_ggplot + geom_histogram(aes(x= view_count), bins=50) + labs(title = 'View count per Ad', x ='Views per Ad', y='Frequency', na.rm = NA) 
+Summary <- fivenum(SuperBowlAds$view_count)
+
+```
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> There is a minimum of 10 views from all of the Ads that were watched. The lower quartile is 6431 views. The median is 42379 views. The upper quartile is 170015.5 Views. Finally, the maximum amount of views is 176373378.0, however, when we exclude the outliers, the maximum amount of views is 415392.25 views on the ad with the most views.
+
+# **Bivariate Analyses**
+
+```{r, echo=FALSE}
+SuperBowlAds_ggplot + geom_boxplot(aes(x=view_count , y= animals))+  labs(title='Relationship of View Count and Animals in Ads', x='Views per Ad ', y='Animals')
+
+```
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> The correlation between View count and animals is `r round(cor(SuperBowlAds$view_count, SuperBowlAds$animals, use = "complete.obs"), 2)`. We have a weak negative relationship between animals and view count. Meaning, that animals being in the Ad did not increase the view count for the Ad.
+
+```{r, echo=FALSE}
+SuperBowlAds_ggplot + geom_point(aes(x=view_count , y=dislike_count)) + labs(title='Relationship of View Count and Dislike Count in Ads', x='Views per Ad ', y='Dislike Count')
+
+```
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> The correlation between View count and dislike count is `r round(cor(SuperBowlAds$view_count, SuperBowlAds$dislike_count, use = "complete.obs"), 2)`. There is a positive weak relationship between Dislike count and view count. This means that the Ad is going to have dislikes from viewers but it does not mean that there will be a high amount of dilikes on the Ad. For the most part, the ad will not get many dislikes from viewers.
+
+```{r, echo=FALSE}
+SuperBowlAds_ggplot + geom_point(aes(x=view_count , y=like_count)) + labs(title='Relationship of View Count and Like Count in Ads', x='Views per Ad ', y='Like COunt')
+
+```
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> The correlation between View count and like count is `r round(cor(SuperBowlAds$view_count, SuperBowlAds$like_count, use = "complete.obs"), 2)`. There is a medium strong relationship between view count and like count. We can comprehend that the more views that Ad gets, the more likes the Ad will receive. The ad will not liked by everyone but there is a correlation between the two.
+
+# **Choice Elements**
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> 1.) I put inline statistics for correlation between my outcome variable and predictor variable. 2.) I used hyperlinks in my introduction and in the conclusion. 3.) Additionally, I included an floating table of contents. 4.) I created a subset to view the outliers in my outcome variable. 5.) Lastly, I changed the font of my text to Comic Sans to make the text more presentable.
+
+# **Conclusion**
+
+```{r}
+
+
+
+
+```
+
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> If you would like to watch some of the Super Bowl Ads for yourself, check out the following website [here.](https://www.superbowl-ads.com/) For the future, we can begin by looking at the historical data of SUper Bowl Ads. Which can allow us to dtermine viewer negangement, viewer ratings, spending, and categories to collect our data. Then we can use the data that we collected to analyze which Ads do better over time by looking at which categories get more intercation from the viewers.
+
+### References
+
+*"According to Super Bowl ads, Americans love America, animals and sex."* (2021, February 4). FiveThirtyEight. <https://projects.fivethirtyeight.com/super-bowl-ads/>
+
+*"SuperBowl-Ads.com."* (2024, February 13). 2024 Super Bowl ads & Archive of past Super Bowl commercials. Superbowl-ads.com Video Archive 2024. <https://www.superbowl-ads.com/#google_vignette>
+
+*"Super Bowl 50 ads by the numbers."* (n.d.). <https://www.kantar.com/inspiration/sport-leisure/super-bowl-50-ads-by-the-numbers>
