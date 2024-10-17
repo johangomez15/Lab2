@@ -31,7 +31,7 @@ SuperBowlAds = SuperBowlAds[SuperBowlAds$view_count <= outlier, ]
 
 ### Note
 
-<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;">I removed the outliers in View count since the outliers were altering the data which made the graphs difficult to look at. I used the outlier equation to identify the outliers, which came out to be 415392.25. Any valuers that were above that number were removed to make the data easier to understand ![](SuperBowlADs.png) [Picture Source](https://projects.fivethirtyeight.com/super-bowl-ads/)
+<span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;">I removed the outliers in View count since the outliers were altering the data which made the graphs difficult to look at. I used the outlier equation to identify the outliers, which came out to be 415392.25. Any valuers that were above that number were removed to make the data easier to understand ![](https://projects.fivethirtyeight.com/super-bowl-ads/images/SUPER-BOWL-ADS-Topper.png?v=7e5791e9) [Picture Source](https://projects.fivethirtyeight.com/super-bowl-ads/)
 
 # **Outcome Variable**
 
@@ -72,13 +72,6 @@ SuperBowlAds_ggplot + geom_point(aes(x=view_count , y=like_count)) + labs(title=
 <span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> 1.) I put inline statistics for correlation between my outcome variable and predictor variable. 2.) I used hyperlinks in my introduction and in the conclusion. 3.) Additionally, I included an floating table of contents. 4.) I created a subset to view the outliers in my outcome variable. 5.) Lastly, I changed the font of my text to Comic Sans to make the text more presentable.
 
 # **Conclusion**
-
-```{r}
-
-
-
-
-```
 
 <span style="font-family: 'Comic Sans MS', 'Comic Sans, sursive;"> If you would like to watch some of the Super Bowl Ads for yourself, check out the following website [here.](https://www.superbowl-ads.com/) For the future, we can begin by looking at the historical data of SUper Bowl Ads. Which can allow us to dtermine viewer negangement, viewer ratings, spending, and categories to collect our data. Then we can use the data that we collected to analyze which Ads do better over time by looking at which categories get more intercation from the viewers.
 
